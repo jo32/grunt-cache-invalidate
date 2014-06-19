@@ -39,6 +39,7 @@ NULL
 
 ### Usage Examples
 
+#### Configuration
 
 ```js
 grunt.initConfig({
@@ -50,6 +51,40 @@ grunt.initConfig({
   },
 });
 ```
+
+#### "sample.html" before running this task
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World!</title>
+    <script type="text/javascript" src="sample1.js#grunt-cache-invalidate"></script>
+    <script type="text/javascript" src="sample2.js#grunt-cache-invalidate"></script>
+</head>
+<body>
+
+</body>
+</html>
+```
+
+#### "sample.html" after running this task
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World!</title>
+    <script type="text/javascript" src="sample1.5340dc1df.js"></script>
+    <script type="text/javascript" src="sample2.e7d97adc3.js"></script>
+</head>
+<body>
+
+</body>
+</html>
+```
+
+And `sample1.5340dc1df.js`, `sample2.e7d97adc3.js` should be in your dest folder.
 
 ## Release History
 
