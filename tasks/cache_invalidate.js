@@ -14,7 +14,7 @@ module.exports = function (grunt) {
     // creation: http://gruntjs.com/creating-tasks
     var crypto = require('crypto');
     var path = require('path');
-    var CACHE_REGEX = /([\w\/-]+?\.[\w-]+)#grunt-cache-invalidate/g;
+    var CACHE_REGEX = /([\w\.\/-]+?\.[\w-]+)#grunt-cache-invalidate/g;
     var FILE_FORMAT_REGEX = /^(.+?)\.(\w+?)$/;
 
     function isPathEqual(p1, p2) {

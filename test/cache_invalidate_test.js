@@ -35,7 +35,7 @@ exports.cache_invalidate = {
         test.expect(1 + json.length);
         test.equal(actual, expected, 'test if the cached bursted file is the same.');
         for (var i in json) {
-            test.equal(true, fs.existsSync("tmp/" + json[i]));
+            test.equal(true, fs.existsSync("tmp/" + json[i]), "need " + json[i] + ", but not found");
         }
         test.done();
     }
