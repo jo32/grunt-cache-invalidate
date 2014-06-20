@@ -28,7 +28,7 @@ exports.cache_invalidate = {
     setUp: function (done) {
         done();
     },
-    default_options: function (test) {
+    test: function (test) {
         var actual = grunt.file.read('tmp/sample.html');
         var expected = grunt.file.read('test/expected/sample.html');
         var json = JSON.parse(grunt.file.read("test/expected/files.json"));

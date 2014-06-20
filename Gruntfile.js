@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 
         // Configuration to be run (and then tested).
         cache_invalidate: {
-            test: {
+            task: {
                 src: ["test/fixtures/sample.html"],
                 dest: "tmp"
             }
