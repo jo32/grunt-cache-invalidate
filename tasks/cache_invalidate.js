@@ -14,7 +14,7 @@ module.exports = function (grunt) {
     // creation: http://gruntjs.com/creating-tasks
     var crypto = require('crypto');
     var path = require('path');
-    var CACHE_REGEX = /([\w-]+?\.[\w-]+)#grunt-cache-invalidate/g;
+    var CACHE_REGEX = /([\w\/-]+?\.[\w-]+)#grunt-cache-invalidate/g;
     var FILE_FORMAT_REGEX = /^(.+?)\.(\w+?)$/;
 
     function escapeRegExp(str) {
@@ -50,11 +50,11 @@ module.exports = function (grunt) {
 
     }
 
-    function getRename(_path) {
+    function getRename(realPath, destRelativePath) {
 
-        var r = FILE_FORMAT_REGEX.exec(_path);
-        var shortHash = getShortHash(_path);
-        var newPath = r[1] + '.' + shortHash + '.' + r[2];
+        var r = FILE_FORMAT_REGEX.exec(realPath);
+        var shortHash = getShortHash(realPath);
+        var newPath = path.join(destRelativePath, path.basename(r[1] + '.' + shortHash + '.' + r[2]));
         return newPath;
     }
 
@@ -83,11 +83,15 @@ module.exports = function (grunt) {
                 var fileContent = grunt.file.read(filepath);
                 var files = getFilePathInFile(fileContent, true);
 
+                console.log("Found files: ");
+                console.log(files);
+
                 files.forEach(function (_path) {
 
                     var realPath = path.normalize(path.join(path.dirname(filepath), _path));
+                    console.log("locate file '" + _path + "' in " + realPath);
 
-                    var newPath = getRename(realPath);
+                    var newPath = getRename(realPath, path.dirname(_path));
                     tasks[realPath] = newPath;
 
                     console.log(path.basename(realPath) + " ==> " + path.basename(newPath));
@@ -106,7 +110,7 @@ module.exports = function (grunt) {
             for (var task in tasks) {
                 grunt.file.copy(
                     task, path.normalize(
-                        path.join(f.dest, path.basename(tasks[task]))
+                        path.join(f.dest, tasks[task])
                     )
                 );
             }
