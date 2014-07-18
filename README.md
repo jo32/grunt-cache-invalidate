@@ -33,6 +33,10 @@ grunt.initConfig({
 });
 ```
 
+### Features
+
+Now it will recursively resolve your referrences between files and will break the circuler reference.
+
 ### Options
 
 NULL
