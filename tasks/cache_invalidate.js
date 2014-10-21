@@ -159,6 +159,9 @@ module.exports = function (grunt) {
                 grunt.file.copy(
                     srcPath, tasks[task]
                 );
+                if(f.move){
+                    grunt.file.delete(srcPath);
+                }
             }
 
             for (var i in fileRemap) {
