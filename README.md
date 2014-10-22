@@ -39,7 +39,7 @@ Now it will recursively resolve your referrences between files and will break th
 
 ### Options
 
-NULL
+move - true deletes the resource src files
 
 ### Usage Examples
 
@@ -50,7 +50,8 @@ grunt.initConfig({
   cache_invalidate: {
     your_target: {
       src: ['sample.html', ...],
-      dest: 'build'
+      dest: 'build',
+      move: false
     }
   },
 });
