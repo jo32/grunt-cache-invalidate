@@ -18,7 +18,7 @@ module.exports = function (grunt) {
     var FILE_FORMAT_REGEX = /^(.+?)\.(\w+?)$/;
 
     function isPathEqual(p1, p2) {
-        return path.normalize(p1) === path.normalize(p2);
+        return path.normalize(p1.toString()) === path.normalize(p2.toString());
     }
 
     function escapeRegExp(str) {
